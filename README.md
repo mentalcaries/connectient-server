@@ -1,6 +1,8 @@
-# README
+# Connectient API
 
-This README would normally document whatever steps are necessary to get the
+This will serve as the dedicated backend for the Connectient App
+
+<!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
@@ -21,4 +23,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ... -->
