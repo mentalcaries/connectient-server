@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_09_005206) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_09_113653) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "appointments", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "mobile_phone"
     t.string "email"
     t.date "requested_date"
-    t.time "requested_time"
+    t.string "requested_time"
     t.date "scheduled_date"
     t.time "scheduled_time"
     t.boolean "is_emergency", default: false
