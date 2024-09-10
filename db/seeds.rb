@@ -6,6 +6,7 @@ Appointment.destroy_all
 
 10.times do
   time_options = ["morning", "afternoon", "flexible"]
+  appointment_options = %w[hygiene, filling, extraction, other]
   time = Faker::Time.forward(days: 14, period: :morning)
   time_only = time.strftime("%H:%M:%S")
 
@@ -19,6 +20,7 @@ Appointment.destroy_all
     requested_time: time_options.sample,
     scheduled_date: Date.today,
     scheduled_time: time_only,
-    is_emergency: Faker::Boolean.boolean(true_ratio: 0.25)
+    is_emergency: Faker::Boolean.boolean(true_ratio: 0.25),
+    appointment_type: appointment_options.sample
   )
 end
