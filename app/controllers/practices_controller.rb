@@ -46,6 +46,6 @@ class PracticesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def practice_params
-      params.require(:practice).permit(:name, :street_address, :city, :email, :mobile_phone, :practice_code, :logo, :facebook, :instagram, :website)
+      params.require(:practice).permit(:name, :street_address, :city, :email, :phone, :practice_code, :logo, :facebook, :instagram, :website)
     end
 end

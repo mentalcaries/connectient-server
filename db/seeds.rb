@@ -24,3 +24,29 @@ Appointment.destroy_all
     appointment_type: appointment_options.sample
   )
 end
+
+Practice.create(
+  name: "Downtown Dental",
+  street_address: "123 Main St",
+  city: "Metropolis",
+  email: "contact@downtowndental.com",
+  phone: "555-1234",
+  practice_code: "DT123",
+  logo: "logo.png",
+  facebook: "facebook.com/downtowndental",
+  instagram: "instagram.com/downtowndental",
+  website: "www.downtowndental.com"
+)
+
+Practice.create(
+  name: "Uptown Health Clinic",
+  street_address: "456 Elm St",
+  city: "Springfield",
+  email: "info@uptownclinic.com",
+  phone: "555-9876",
+  practice_code: "UPT456",
+  logo: "uptown_logo.png",
+  facebook: "facebook.com/uptownhealth",
+  instagram: "instagram.com/uptownhealth",
+  website: "www.uptownclinic.com"
+)
