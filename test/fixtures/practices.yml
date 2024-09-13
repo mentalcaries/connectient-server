@@ -1,0 +1,23 @@
+practice_one:
+  name: "Sunshine Dental"
+  street_address: "123 Sunny Lane"
+  city: "Sunville"
+  phone: "123-456-7890"
+  email: "contactus@sunshinedental.com"
+  practice_code: "SD123"
+  logo: "sunshine_logo.png"
+  facebook: "https://facebook.com/sunshinedental"
+  instagram: "https://instagram.com/sunshinedental"
+  website: "https://sunshinedental.com"
+
+practice_two:
+  name: "Healthy Smiles Clinic"
+  street_address: "456 Smile Blvd"
+  city: "Smileville"
+  phone: "987-654-3210"
+  email: "infor@healthysmiles.com"
+  practice_code: "HS456"
+  logo: "smiles_logo.png"
+  facebook: "https://facebook.com/healthysmiles"
+  instagram: "https://instagram.com/healthysmiles"
+  website: "https://healthysmiles.com"
