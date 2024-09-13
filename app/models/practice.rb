@@ -1,7 +1,5 @@
 class Practice < ApplicationRecord
-  validates :name, :street_address, :city, :phone, presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-
-  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX},
-  uniqueness: true
+  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
+  validates :street_address, :city, :phone, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP}, uniqueness: true
 end
