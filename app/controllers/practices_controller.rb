@@ -1,10 +1,9 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: %i[ show update destroy ]
-
+  # skip_before_action :authenticate, only: :
   # GET /practices
   def index
     @practices = Practice.all
-
     render json: @practices
   end
 
