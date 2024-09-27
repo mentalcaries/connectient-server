@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  # belongs_to :practice
 
   generates_token_for :email_verification, expires_in: 2.days do
     email
@@ -12,7 +13,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, allow_nil: true, length: { minimum: 12 }
+  validates :password, allow_nil: true, length: { minimum: 8 }
   validates :password, not_pwned: { message: "might easily be guessed" }
 
   normalizes :email, with: -> { _1.strip.downcase }

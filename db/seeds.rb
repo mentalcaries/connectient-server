@@ -4,28 +4,7 @@
 
 Appointment.destroy_all
 
-10.times do
-  time_options = ["morning", "afternoon", "flexible"]
-  appointment_options = %w[hygiene, filling, extraction, other]
-  time = Faker::Time.forward(days: 14, period: :morning)
-  time_only = time.strftime("%H:%M:%S")
-
-  Appointment.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    mobile_phone: Faker::PhoneNumber.cell_phone,
-    description: Faker::Lorem.paragraph(sentence_count: 2),
-    requested_date: Faker::Date.forward(from: ::Date.today, days: 5),
-    requested_time: time_options.sample,
-    scheduled_date: Date.today,
-    scheduled_time: time_only,
-    is_emergency: Faker::Boolean.boolean(true_ratio: 0.25),
-    appointment_type: appointment_options.sample
-  )
-end
-
-Practice.create(
+practice_one = Practice.create(
   name: "Downtown Dental",
   street_address: "123 Main St",
   city: "Metropolis",
@@ -38,7 +17,7 @@ Practice.create(
   website: "www.downtowndental.com"
 )
 
-Practice.create(
+practice_two = Practice.create(
   name: "Uptown Health Clinic",
   street_address: "456 Elm St",
   city: "Springfield",
@@ -50,3 +29,28 @@ Practice.create(
   instagram: "instagram.com/uptownhealth",
   website: "www.uptownclinic.com"
 )
+
+10.times do
+  practice_ids = [practice_one.id, practice_two.id]
+  time_options = ["morning", "afternoon", "flexible"]
+  appointment_options = %w[hygiene, filling, extraction, other]
+  time = Faker::Time.forward(days: 14, period: :morning)
+  time_only = time.strftime("%H:%M:%S")
+
+  Appointment.create(
+    practice_id: practice_ids.sample,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    mobile_phone: Faker::PhoneNumber.cell_phone,
+    description: Faker::Lorem.paragraph(sentence_count: 2),
+    requested_date: Faker::Date.forward(from: ::Date.today, days: 5),
+    requested_time: time_options.sample,
+    scheduled_date: Date.today,
+    scheduled_time: time_only,
+    is_emergency: Faker::Boolean.boolean(true_ratio: 0.25),
+    appointment_type: appointment_options.sample
+
+  )
+end
+

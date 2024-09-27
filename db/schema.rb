@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_18_123239) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_26_131652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_123239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "appointment_type"
+    t.uuid "practice_id", null: false
+    t.index ["practice_id"], name: "index_appointments_on_practice_id"
   end
 
   create_table "practices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -48,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_123239) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.uuid "user_id", null: false
     t.string "user_agent"
     t.string "ip_address"
     t.datetime "created_at", null: false
@@ -56,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_123239) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "verified", default: false, null: false
@@ -65,5 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_18_123239) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "appointments", "practices"
   add_foreign_key "sessions", "users"
 end
