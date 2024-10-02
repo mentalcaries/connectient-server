@@ -5,10 +5,6 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     @user, @token = sign_in_as(users(:devin))
   end
 
-  def default_headers
-    { "Authorization" => "Bearer #{@token}" }
-  end
-
   test "should update password" do
     patch password_url, params: { password_challenge: "Secret1*3*5*", password: "Secret6*4*2*", password_confirmation: "Secret6*4*2*" }, headers: default_headers
     assert_response :success

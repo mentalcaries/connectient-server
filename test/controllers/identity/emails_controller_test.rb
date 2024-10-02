@@ -5,10 +5,6 @@ class Identity::EmailsControllerTest < ActionDispatch::IntegrationTest
     @user, @token = sign_in_as(users(:devin))
   end
 
-  def default_headers
-    { "Authorization" => "Bearer #{@token}" }
-  end
-
   test "should update email" do
     patch identity_email_url, params: { email: "new_email@hey.com", password_challenge: "Secret1*3*5*" }, headers: default_headers
     assert_response :success

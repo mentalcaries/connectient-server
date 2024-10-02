@@ -6,10 +6,6 @@ class Identity::EmailVerificationsControllerTest < ActionDispatch::IntegrationTe
     @user.update! verified: false
   end
 
-  def default_headers
-    { "Authorization" => "Bearer #{@token}" }
-  end
-
   test "should send a verification email" do
     assert_enqueued_email_with UserMailer, :email_verification, params: { user: @user } do
       post identity_email_verification_url, headers: default_headers

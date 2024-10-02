@@ -5,10 +5,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     @user, @token = sign_in_as(users(:devin))
   end
 
-  def default_headers
-    { "Authorization" => "Bearer #{@token}" }
-  end
-
   test "should get index" do
     get sessions_url, headers: default_headers
     assert_response :success

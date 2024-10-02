@@ -6,10 +6,6 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     @user, @token = sign_in_as(users(:devin))
   end
 
-  def default_headers
-    { "Authorization" => "Bearer #{@token}"}
-  end
-
   test "should get index" do
     get appointments_url, headers: default_headers, as: :json
     assert_response :success
