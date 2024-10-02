@@ -15,7 +15,7 @@ class ActiveSupport::TestCase
     [user, response.headers["X-Session-Token"]]
   end
 
-  def default_header
+  def default_headers
     { "Authorization" => "Bearer #{@token}"}
   end
 end
