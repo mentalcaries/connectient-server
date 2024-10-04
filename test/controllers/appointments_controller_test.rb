@@ -2,8 +2,10 @@ require "test_helper"
 
 class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @practice = practices(:practice_one)
     @appointment = appointments(:one)
     @user, @token = sign_in_as(users(:devin))
+
   end
 
   test "should get index" do
@@ -13,7 +15,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create appointment" do
     assert_difference("Appointment.count") do
-      post appointments_url, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
+      post appointments_url, params: { appointment: { practice_id: @appointment.practice_id, description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
     end
 
     assert_response :created

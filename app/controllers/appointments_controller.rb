@@ -16,11 +16,13 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
+    Rails.logger.debug "Appointment params: #{appointment_params}"
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
     else
+      Rails.logger.debug "Errors: #{@appointment.errors.full_messages}"
       render json: @appointment.errors, status: :unprocessable_entity
     end
   end
@@ -47,6 +49,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:first_name, :last_name, :mobile_phone, :email, :requested_date, :requested_time, :scheduled_date, :scheduled_time, :is_emergency, :description)
+      params.require(:appointment).permit(:practice_id, :first_name, :last_name, :mobile_phone, :email, :requested_date, :requested_time, :scheduled_date, :scheduled_time, :is_emergency, :description)
     end
 end

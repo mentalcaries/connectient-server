@@ -1,4 +1,5 @@
 practice_one:
+  id: "67a2c80a-d2c9-4872-bba9-d355693d0368"
   name: "Sunshine Dental"
   street_address: "123 Sunny Lane"
   city: "Sunville"
@@ -11,6 +12,7 @@ practice_one:
   website: "https://sunshinedental.com"
 
 practice_two:
+  id: "67a2c80a-d2c9-4872-bba9-d355693d0732"
   name: "Healthy Smiles Clinic"
   street_address: "456 Smile Blvd"
   city: "Smileville"
