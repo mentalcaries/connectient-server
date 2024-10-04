@@ -1,5 +1,5 @@
 class Practice < ApplicationRecord
-  # has_many :appointments
+  has_many :appointments, dependent: :destroy
   # belongs_to :user
 
   validates :name, presence: true, length: { minimum: 2, maximum: 100 }

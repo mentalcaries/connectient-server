@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="AppointmentsControllerTest" filepath="test/controllers/appointments_controller_test.rb" skipped="0" failures="0" errors="0" tests="5" assertions="9" time="2.5930010001175106">
+    <testcase name="test_should_update_appointment" lineno="29" classname="AppointmentsControllerTest" assertions="1" time="1.5002480000257492" file="test/controllers/appointments_controller_test.rb">
+    </testcase>
+    <testcase name="test_should_show_appointment" lineno="24" classname="AppointmentsControllerTest" assertions="1" time="0.26972500002011657" file="test/controllers/appointments_controller_test.rb">
+    </testcase>
+    <testcase name="test_should_destroy_appointment" lineno="34" classname="AppointmentsControllerTest" assertions="3" time="0.2711370000615716" file="test/controllers/appointments_controller_test.rb">
+    </testcase>
+    <testcase name="test_should_get_index" lineno="11" classname="AppointmentsControllerTest" assertions="1" time="0.27509899996221066" file="test/controllers/appointments_controller_test.rb">
+    </testcase>
+    <testcase name="test_should_create_appointment" lineno="16" classname="AppointmentsControllerTest" assertions="3" time="0.27679200004786253" file="test/controllers/appointments_controller_test.rb">
+    </testcase>
+  </testsuite>
+</testsuites>

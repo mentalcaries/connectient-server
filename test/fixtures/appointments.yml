@@ -1,27 +1,78 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  first_name: Jonn
-  last_name: MyString
-  mobile_phone: MyString
-  email: hello@appointment.com
+  first_name: John
+  last_name: Doe
+  mobile_phone: 123-456-7890
+  email: john.doe@example.com
   requested_date: 2024-09-08
-  requested_time: 2024-09-08 20:52:06
-  scheduled_date: 2024-09-08
-  scheduled_time: 2024-09-08 20:52:06
+  requested_time: 10:00 AM
+  scheduled_date: 2024-09-09
+  scheduled_time: 10:30 AM
   is_emergency: false
-  description: MyText
+  description: Regular checkup
   practice_id: "67a2c80a-d2c9-4872-bba9-d355693d0368"
 
 two:
-  first_name: MyString
-  last_name: MyString
-  mobile_phone: MyString
-  email: hell2o@appointment.com
-  requested_date: 2024-09-08
-  requested_time: 2024-09-08 20:52:06
-  scheduled_date: 2024-09-08
-  scheduled_time: 2024-09-08 20:52:06
+  first_name: Jane
+  last_name: Smith
+  mobile_phone: 234-567-8901
+  email: jane.smith@example.com
+  requested_date: 2024-09-10
+  requested_time: 11:00 AM
+  scheduled_date: 2024-09-10
+  scheduled_time: 11:30 AM
   is_emergency: false
-  description: MyText
+  description: Tooth pain
   practice_id: "67a2c80a-d2c9-4872-bba9-d355693d0368"
+
+three:
+  first_name: Bob
+  last_name: Johnson
+  mobile_phone: 345-678-9012
+  email: bob.johnson@example.com
+  requested_date: 2024-09-11
+  requested_time: 9:30 AM
+  scheduled_date: 2024-09-11
+  scheduled_time: 10:00 AM
+  is_emergency: true
+  description: Dental emergency
+  practice_id: "67a2c80a-d2c9-4872-bba9-d355693d0368"
+
+four:
+  first_name: Alice
+  last_name: Walker
+  mobile_phone: 456-789-0123
+  email: alice.walker@example.com
+  requested_date: 2024-09-12
+  requested_time: 12:30 PM
+  scheduled_date: 2024-09-12
+  scheduled_time: 1:00 PM
+  is_emergency: false
+  description: Routine cleaning
+  practice_id: "67a2c80a-d2c9-4872-bba9-d355693d0368"
+
+five:
+  first_name: Charlie
+  last_name: Brown
+  mobile_phone: 567-890-1234
+  email: charlie.brown@example.com
+  requested_date: 2024-09-13
+  requested_time: 2:00 PM
+  scheduled_date: 2024-09-13
+  scheduled_time: 2:30 PM
+  is_emergency: false
+  description: Wisdom teeth consultation
+  practice_id: "fc0b1141-d616-5bbd-804a-5c01bd83ecfb"
+
+six:
+  first_name: Lucy
+  last_name: Thompson
+  mobile_phone: 678-901-2345
+  email: lucy.thompson@example.com
+  requested_date: 2024-09-14
+  requested_time: 3:00 PM
+  scheduled_date: 2024-09-14
+  scheduled_time: 3:30 PM
+  is_emergency: true
+  description: Severe toothache
+  practice_id: "fc0b1141-d616-5bbd-804a-5c01bd83ecfb"
