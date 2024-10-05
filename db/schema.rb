@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_04_122307) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_05_114225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -46,7 +46,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_122307) do
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "user_id"
     t.index ["email"], name: "index_practices_on_email", unique: true
+    t.index ["user_id"], name: "index_practices_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -68,5 +70,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_04_122307) do
   end
 
   add_foreign_key "appointments", "practices"
+  add_foreign_key "practices", "users"
   add_foreign_key "sessions", "users"
 end

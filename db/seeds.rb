@@ -30,6 +30,7 @@ Practice.create(
   website: "www.uptownclinic.com"
 )
 
+User.create()
 
 10.times do
   time_options = ["morning", "afternoon", "flexible"]

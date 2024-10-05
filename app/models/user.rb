@@ -12,8 +12,9 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, allow_nil: true, length: { minimum: 12 }
+  validates :password, allow_nil: true, length: { minimum: 8 }
   validates :password, not_pwned: { message: "might easily be guessed" }
+  validates :password_confirmation, presence: true
 
   normalizes :email, with: -> { _1.strip.downcase }
 
@@ -24,4 +25,5 @@ class User < ApplicationRecord
   after_update if: :password_digest_previously_changed? do
     sessions.where.not(id: Current.session).delete_all
   end
+
 end

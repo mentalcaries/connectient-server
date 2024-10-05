@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: %i[ show update destroy ]
-  skip_before_action :authenticate, only: :index
+  # skip_before_action :authenticate, only: :index
 
   # GET /practices
   def index
