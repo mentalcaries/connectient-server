@@ -22,8 +22,19 @@ class PracticesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show practice" do
-    get practice_url(@practice), headers: default_headers, as: :json
+    get practice_url(@practice), as: :json
     assert_response :success
+  end
+
+  test "should show practice by practice code" do
+    get code_practices_url(@practice.practice_code), as: :json
+    assert_response :success
+  end
+
+  test "should reject invalid practice code" do
+    get code_practices_url('asdf-dent'), as: :json
+    assert_response :unprocessable_entity
+
   end
 
   test "should update practice" do

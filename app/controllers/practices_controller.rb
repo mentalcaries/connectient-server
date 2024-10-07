@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: %i[ show update destroy ]
-  skip_before_action :authenticate, only: [:show, :index]
+  skip_before_action :authenticate, only: [:show, :index, :show_by_code]
 
   # GET /practices
   def index
@@ -14,8 +14,14 @@ class PracticesController < ApplicationController
     render json: @practice
   end
 
-  def show_practice_by_id
-    
+  def show_by_code
+    practice =  Practice.find_by(practice_code: params[:practice_code])
+
+    if practice
+      render json: practice
+    else
+      render json: 'Invalid practice code', status: :unprocessable_entity
+    end
   end
   # POST /practices
   def create
