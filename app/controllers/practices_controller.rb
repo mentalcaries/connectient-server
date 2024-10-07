@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: %i[ show update destroy ]
-  # skip_before_action :authenticate, only: :index
+  skip_before_action :authenticate, only: [:show, :index]
 
   # GET /practices
   def index
@@ -14,6 +14,9 @@ class PracticesController < ApplicationController
     render json: @practice
   end
 
+  def show_practice_by_id
+    
+  end
   # POST /practices
   def create
     @practice = Practice.new(practice_params)
@@ -45,8 +48,11 @@ class PracticesController < ApplicationController
       @practice = Practice.find(params[:id])
     end
 
+    def set_current_user
+      Current.user
+    end
     # Only allow a list of trusted parameters through.
     def practice_params
-      params.require(:practice).permit(:name, :street_address, :city, :email, :phone, :practice_code, :logo, :facebook, :instagram, :website)
+      params.require(:practice).permit(:name, :street_address, :city, :email, :phone, :practice_code, :logo, :facebook, :instagram, :website, :user_id)
     end
 end
