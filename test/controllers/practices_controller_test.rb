@@ -7,9 +7,9 @@ class PracticesControllerTest < ActionDispatch::IntegrationTest
     @user, @token = sign_in_as(users(:devin))
   end
 
-  test "should get index" do
+  test "should not show all practices" do
     get practices_url, as: :json
-    assert_response :success
+    assert_response :not_found
   end
 
   test "should create practice" do

@@ -8,9 +8,12 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should get index" do
+  test "should get appointments only for specific practice" do
     get appointments_url, headers: default_headers, as: :json
     assert_response :success
+
+    appointments = JSON.parse(response.body)
+    assert_equal 4, appointments.count
   end
 
   test "should create appointment" do

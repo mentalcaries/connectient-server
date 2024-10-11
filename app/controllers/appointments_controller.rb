@@ -1,11 +1,17 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show update destroy ]
+  before_action :set_current_user, only: :index
+  before_action :set_current_practice, only: :index
   skip_before_action :authenticate, only: :create
 
   # GET /appointments
   def index
-    @appointments = Appointment.all
-
+    current_practice = Practice.find_by(user_id: @current_user.id)
+    if current_practice
+      @appointments = Appointment.where(practice_id: current_practice.id)
+    else
+        @appointments = []
+    end
     render json: @appointments
   end
 
@@ -41,6 +47,15 @@ class AppointmentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+    def set_current_user
+      @current_user = Current.user
+    end
+
+    def set_current_practice
+      @current_practice = Practice.where(user_id: @current_user.id)
+    end
+
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end

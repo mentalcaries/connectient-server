@@ -5,7 +5,6 @@ class PracticesController < ApplicationController
   # GET /practices
   def index
     @practices = Practice.all
-
     render json: @practices
   end
 
@@ -54,9 +53,7 @@ class PracticesController < ApplicationController
       @practice = Practice.find(params[:id])
     end
 
-    def set_current_user
-      Current.user
-    end
+    
     # Only allow a list of trusted parameters through.
     def practice_params
       params.require(:practice).permit(:name, :street_address, :city, :email, :phone, :practice_code, :logo, :facebook, :instagram, :website, :user_id)

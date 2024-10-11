@@ -4,6 +4,7 @@ devin:
   email: devin@connectient.co
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
   verified: true
+  id: 3f0c9b0e-2b53-4b6c-a0b4-2a7d6f2e5f45
 
 archer:
   email: outsider@notauth.com
