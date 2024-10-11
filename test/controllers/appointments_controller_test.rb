@@ -4,6 +4,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @practice = practices(:practice_one)
     @appointment = appointments(:one)
+    @appointment_other = appointments(:six)
     @user, @token = sign_in_as(users(:devin))
 
   end
@@ -32,6 +33,11 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   test "should update appointment" do
     patch appointment_url(@appointment), headers: default_headers, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
     assert_response :success
+  end
+
+  test "should not be able to update appointment from other practice" do
+    patch appointment_url(@appointment_other), headers: default_headers, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
+    assert_response :unauthorized
   end
 
   test "should destroy appointment" do

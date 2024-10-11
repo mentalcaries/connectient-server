@@ -1,14 +1,15 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show update destroy ]
-  before_action :set_current_user, only: :index
-  before_action :set_current_practice, only: :index
+  before_action :set_current_user, only: [:index, :update]
+  before_action :set_current_practice, only: [:index, :update]
+  before_action :is_authorized_user, only: :update
   skip_before_action :authenticate, only: :create
 
   # GET /appointments
   def index
-    current_practice = Practice.find_by(user_id: @current_user.id)
-    if current_practice
-      @appointments = Appointment.where(practice_id: current_practice.id)
+    # current_practice = Practice.find_by(user_id: @current_user.id)
+    if @current_practice
+      @appointments = Appointment.where(practice_id: @current_practice.id)
     else
         @appointments = []
     end
@@ -53,12 +54,18 @@ class AppointmentsController < ApplicationController
     end
 
     def set_current_practice
-      @current_practice = Practice.where(user_id: @current_user.id)
+      @current_practice = Practice.find_by(user_id: @current_user.id)
     end
-
+    
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
+    
+    def is_authorized_user
+      is_authorized = @appointment.practice_id == @current_practice.id
+      render status: :unauthorized if !is_authorized
+    end
+
 
     # Only allow a list of trusted parameters through.
     def appointment_params
