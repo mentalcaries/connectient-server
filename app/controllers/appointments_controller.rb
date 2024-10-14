@@ -1,18 +1,13 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show update destroy ]
-  before_action :set_current_user, only: [:index, :update]
-  before_action :set_current_practice, only: [:index, :update]
-  before_action :is_authorized_user, only: :update
+  before_action :set_current_user, only: [:index, :update, :show]
+  before_action :set_current_practice, only: [:index, :update, :show]
+  before_action :is_authorized_user, only: [:update, :show]
   skip_before_action :authenticate, only: :create
 
   # GET /appointments
   def index
-    # current_practice = Practice.find_by(user_id: @current_user.id)
-    if @current_practice
-      @appointments = Appointment.where(practice_id: @current_practice.id)
-    else
-        @appointments = []
-    end
+    @appointments = Appointment.where(practice_id: @current_practice.id)
     render json: @appointments
   end
 

@@ -9,7 +9,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should get appointments only for specific practice" do
+  test "should get appointments only for own practice" do
     get appointments_url, headers: default_headers, as: :json
     assert_response :success
 
@@ -28,6 +28,17 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   test "should show appointment" do
     get appointment_url(@appointment), headers: default_headers, as: :json
     assert_response :success
+  end
+
+  test "should handle show for invalid appointment" do
+    get appointment_url({ practice_id: @appointment.practice_id, id: "invalid-id"}), headers: default_headers, as: :json
+
+    assert_response :not_found
+  end
+
+  test "should not be able to view an appointment if not authorized" do
+    get appointment_url(@appointment_other), headers: default_headers, as: :json
+    assert_response :unauthorized
   end
 
   test "should update appointment" do
