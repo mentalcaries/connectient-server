@@ -2,18 +2,24 @@ require "test_helper"
 
 class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @practice = practices(:practice_one)
     @appointment = appointments(:one)
+    @appointment_other = appointments(:six)
     @user, @token = sign_in_as(users(:devin))
+
   end
 
-  test "should get index" do
+  test "should get appointments only for own practice" do
     get appointments_url, headers: default_headers, as: :json
     assert_response :success
+
+    appointments = JSON.parse(response.body)
+    assert_equal 4, appointments.count
   end
 
   test "should create appointment" do
     assert_difference("Appointment.count") do
-      post appointments_url, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
+      post appointments_url, params: { appointment: { practice_id: @appointment.practice_id, description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
     end
 
     assert_response :created
@@ -24,9 +30,25 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should handle show for invalid appointment" do
+    get appointment_url({ practice_id: @appointment.practice_id, id: "invalid-id"}), headers: default_headers, as: :json
+
+    assert_response :not_found
+  end
+
+  test "should not be able to view an appointment if not authorized" do
+    get appointment_url(@appointment_other), headers: default_headers, as: :json
+    assert_response :unauthorized
+  end
+
   test "should update appointment" do
     patch appointment_url(@appointment), headers: default_headers, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
     assert_response :success
+  end
+
+  test "should not be able to update appointment from other practice" do
+    patch appointment_url(@appointment_other), headers: default_headers, params: { appointment: { description: @appointment.description, email: @appointment.email, first_name: @appointment.first_name, is_emergency: @appointment.is_emergency, last_name: @appointment.last_name, mobile_phone: @appointment.mobile_phone, requested_date: @appointment.requested_date, requested_time: @appointment.requested_time, scheduled_date: @appointment.scheduled_date, scheduled_time: @appointment.scheduled_time } }, as: :json
+    assert_response :unauthorized
   end
 
   test "should destroy appointment" do

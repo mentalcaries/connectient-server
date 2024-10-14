@@ -1,11 +1,13 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show update destroy ]
+  before_action :set_current_user, only: [:index, :update, :show]
+  before_action :set_current_practice, only: [:index, :update, :show]
+  before_action :is_authorized_user, only: [:update, :show]
   skip_before_action :authenticate, only: :create
 
   # GET /appointments
   def index
-    @appointments = Appointment.all
-
+    @appointments = Appointment.where(practice_id: @current_practice.id)
     render json: @appointments
   end
 
@@ -41,12 +43,27 @@ class AppointmentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
+    def set_current_user
+      @current_user = Current.user
+    end
+
+    def set_current_practice
+      @current_practice = Practice.find_by(user_id: @current_user.id)
+    end
+    
     def set_appointment
       @appointment = Appointment.find(params[:id])
     end
+    
+    def is_authorized_user
+      is_authorized = @appointment.practice_id == @current_practice.id
+      render status: :unauthorized if !is_authorized
+    end
+
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:first_name, :last_name, :mobile_phone, :email, :requested_date, :requested_time, :scheduled_date, :scheduled_time, :is_emergency, :description)
+      params.require(:appointment).permit(:practice_id, :first_name, :last_name, :mobile_phone, :email, :requested_date, :requested_time, :scheduled_date, :scheduled_time, :is_emergency, :description)
     end
 end
