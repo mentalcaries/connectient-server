@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token::ControllerMethods
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -10,7 +10,8 @@ class ApplicationController < ActionController::API
       if session_record = authenticate_with_http_token { |token, _| Session.find_signed(token) }
         Current.session = session_record
       else
-        request_http_token_authentication
+        # request_http_token_authentication
+        render json: {error: "Unauthorized", status: :unauthorized}
       end
     end
 

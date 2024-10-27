@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate, only: :create
-
+  skip_before_action :authenticate, only: [:create, :new]
   before_action :set_session, only: %i[ show destroy ]
 
   def index
     render json: Current.user.sessions.order(created_at: :desc)
+  end
+
+  def new
   end
 
   def show
