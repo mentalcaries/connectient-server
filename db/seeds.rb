@@ -4,6 +4,10 @@
 Appointment.destroy_all
 Practice.destroy_all
 
+User.create(email:"dev@connectient.co", password:"PastaPasta")
+User.create(email:"dev2@connectient.co", password:"PastaPasta")
+
+
 Practice.create(
   name: "Downtown Dental",
   street_address: "123 Main St",
@@ -14,7 +18,8 @@ Practice.create(
   logo: "logo.png",
   facebook: "facebook.com/downtowndental",
   instagram: "instagram.com/downtowndental",
-  website: "www.downtowndental.com"
+  website: "www.downtowndental.com",
+  user_id: User.first.id
 )
 
 Practice.create(
@@ -27,10 +32,10 @@ Practice.create(
   logo: "uptown_logo.png",
   facebook: "facebook.com/uptownhealth",
   instagram: "instagram.com/uptownhealth",
-  website: "www.uptownclinic.com"
+  website: "www.uptownclinic.com",
+  user_id: User.last.id
 )
 
-User.create()
 
 10.times do
   time_options = ["morning", "afternoon", "flexible"]
