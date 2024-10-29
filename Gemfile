@@ -6,8 +6,7 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "7.2.1"
 
-# Use pg as the database for Active Record
-gem "pg", "~> 1.1"
+gem 'sqlite3'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.0"
@@ -54,3 +53,5 @@ gem "authentication-zero", "~> 3.0"
 gem "bcrypt", "~> 3.1.7"
 # Use Pwned to check if a password has been found in any of the huge data breaches [https://github.com/philnash/pwned]
 gem "pwned"
+
+gem "sqlite-ulid", "~> 0.2.1"

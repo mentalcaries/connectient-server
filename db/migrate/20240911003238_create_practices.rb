@@ -1,6 +1,7 @@
 class CreatePractices < ActiveRecord::Migration[7.0]
   def change
-    create_table :practices, id: :uuid do |t|
+    create_table :practices, force: true, id: false do |t|
+      t.primary_key :id, :string, default: -> { "ULID()" }
       t.string :name
       t.string :street_address
       t.string :city
