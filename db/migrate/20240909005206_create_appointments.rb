@@ -1,6 +1,7 @@
 class CreateAppointments < ActiveRecord::Migration[7.0]
   def change
-    create_table :appointments do |t|
+    create_table :appointments, force: true, id: false do |t|
+      t.primary_key :id, :string, default: -> { "ULID()" }
       t.string :first_name
       t.string :last_name
       t.string :mobile_phone

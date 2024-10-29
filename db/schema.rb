@@ -11,11 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2024_10_05_114225) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pgcrypto"
-  enable_extension "plpgsql"
-
-  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "appointments", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "mobile_phone"
@@ -29,11 +25,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_114225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "appointment_type"
-    t.uuid "practice_id", null: false
+    t.string "practice_id", null: false
     t.index ["practice_id"], name: "index_appointments_on_practice_id"
   end
 
-  create_table "practices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "practices", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.string "name"
     t.string "street_address"
     t.string "city"
@@ -46,13 +42,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_114225) do
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "user_id"
+    t.string "user_id"
     t.index ["email"], name: "index_practices_on_email", unique: true
     t.index ["user_id"], name: "index_practices_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.uuid "user_id", null: false
+    t.string "user_id", null: false
     t.string "user_agent"
     t.string "ip_address"
     t.datetime "created_at", null: false
@@ -60,7 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_114225) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "verified", default: false, null: false

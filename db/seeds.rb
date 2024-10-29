@@ -4,8 +4,8 @@
 Appointment.destroy_all
 Practice.destroy_all
 
-User.create(email:"dev@connectient.co", password:"PastaPasta")
-User.create(email:"dev2@connectient.co", password:"PastaPasta")
+User.create(email:"dev@connectient.co", password:"Pass!word!22")
+User.create(email:"dev2@connectient.co", password:"Pass!word!22")
 
 
 Practice.create(
