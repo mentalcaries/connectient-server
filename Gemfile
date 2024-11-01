@@ -55,3 +55,7 @@ gem "sqlite-ulid", "~> 0.2.1"
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+
+gem "inertia_rails-contrib", "~> 0.3.0"
+
+gem "vite_rails", "~> 3.0"
