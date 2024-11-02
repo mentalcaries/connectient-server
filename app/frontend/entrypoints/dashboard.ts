@@ -6,7 +6,7 @@ createInertiaApp({
   // Set default page title
   // see https://inertia-rails.netlify.app/guide/title-and-meta
   //
-  // title: title => title ? `${title} - App` : 'App',
+  title: title => title ? `${title}` : 'Connectient Dashboard',
 
   // Disable progress bar
   //
@@ -14,8 +14,8 @@ createInertiaApp({
   // progress: false,
 
   resolve: (name) => {
-    const pages = import.meta.glob('../pages/**/*.jsx', { eager: true })
-    return pages[`../pages/${name}.jsx`]
+    const pages = import.meta.glob(['../pages/Dashboard.tsx', '!./pages/**/*.{test,spec}.tsx'], { eager: true })
+    return pages[`../pages/${name}.tsx`]
 
     // To use a default layout, import the Layout component
     // and use the following lines.

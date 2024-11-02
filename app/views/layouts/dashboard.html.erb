@@ -4,8 +4,12 @@
   <%# <title inertia>Connectient</title> %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <%= vite_react_refresh_tag %>
+  <%= vite_client_tag %>
+  <%= vite_stylesheet_tag 'application'%>
+  <%= vite_typescript_tag 'dashboard' %>
+  <%= inertia_ssr_head %>
 
-  <%= yield :head %>
 </head>
 <body>
   <%= yield %>
