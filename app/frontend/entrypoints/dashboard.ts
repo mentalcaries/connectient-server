@@ -3,15 +3,6 @@ import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 
 createInertiaApp({
-  // Set default page title
-  // see https://inertia-rails.netlify.app/guide/title-and-meta
-  //
-  title: title => title ? `${title}` : 'Connectient Dashboard',
-
-  // Disable progress bar
-  //
-  // see https://inertia-rails.netlify.app/guide/progress-indicators
-  // progress: false,
 
   resolve: (name) => {
     const pages = import.meta.glob(['../pages/Dashboard.tsx', '!./pages/**/*.{test,spec}.tsx'], { eager: true })
