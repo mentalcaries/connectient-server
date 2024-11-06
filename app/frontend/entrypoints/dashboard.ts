@@ -3,9 +3,10 @@ import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 
 createInertiaApp({
+  //
 
   resolve: (name) => {
-    const pages = import.meta.glob(['../pages/Dashboard.tsx', '!./pages/**/*.{test,spec}.tsx'], { eager: true })
+    const pages = import.meta.glob(['../pages/*.tsx', '!./pages/**/*.{test,spec}.tsx'], { eager: true })
     return pages[`../pages/${name}.tsx`]
 
     // To use a default layout, import the Layout component

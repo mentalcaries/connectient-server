@@ -1,28 +1,36 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate, only: :create
+  skip_before_action :authenticate, only: %i[create new]
 
-  before_action :set_session, only: %i[ show destroy ]
+  layout 'dashboard'
+
+  # before_action :set_session, only: %i[ destroy ]
 
   def index
-    render json: Current.user.sessions.order(created_at: :desc)
+    @sessions =  Current.user.sessions.order(created_at: :desc)
   end
 
-  def show
-    render json: @session
+  def new
+    render inertia: "Login"
+    
   end
+  # def show
+  #   render json: @session
+  # end
 
   def create
     if user = User.authenticate_by(email: params[:email], password: params[:password])
       @session = user.sessions.create!
-      response.set_header "X-Session-Token", @session.signed_id
-      render json: @session, status: :created
+      cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
+      redirect_to dashboard_path
     else
-      render json: { error: "That email or password is incorrect" }, status: :unauthorized
+      render inertia: "Login", props: { message: { error: "Invalid credentials"}}
     end
   end
 
   def destroy
-    @session.destroy
+    Current.session.destroy
+    # render inertia: "Auth/Login", props: { message: { success: "You have been logged out"} }
+  inertia_location login_path
   end
 
   private

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  get 'dashboard', to: "dashboard#index"
-  get 'inertia', to: 'inertia#index'
-  # get "pages/index"
-  post "sign_in", to: "sessions#create"
+  get  "login", to: "sessions#new"
+  post "login", to: "sessions#create"
   post "sign_up", to: "registrations#create"
-  resources :sessions, only: [:index, :show, :destroy]
+  delete "logout", to: "sessions#destroy"
+
+  get 'dashboard', to: "dashboard#index"
+
+  # resources :sessions, only: [:index, :show, :destroy]
   resource  :password, only: [:edit, :update]
   namespace :identity do
     resource :email,              only: [:edit, :update]

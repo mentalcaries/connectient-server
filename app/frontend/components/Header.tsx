@@ -1,7 +1,15 @@
-import React from 'react'
+import { router } from '@inertiajs/react';
+import React from 'react';
 
 export const Header = () => {
+  const handleLogout = () => {
+    router.delete('/logout');
+  };
+
   return (
-    <header>Header Logo Here</header>
-  )
-}
+    <header className="flex justify-between">
+      Header Logo Here
+      <button onClick={handleLogout}>Log out</button>
+    </header>
+  );
+};
