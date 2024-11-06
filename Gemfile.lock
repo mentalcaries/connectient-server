@@ -87,6 +87,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.1)
+    dry-cli (1.2.0)
     erubi (1.13.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
@@ -94,6 +95,11 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    inertia_rails (3.3.0)
+      railties (>= 5)
+    inertia_rails-contrib (0.3.0)
+      inertia_rails
+      railties (>= 6.0.0)
     io-console (0.7.2)
     irb (1.14.1)
       rdoc (>= 4.0.0)
@@ -139,6 +145,8 @@ GEM
     rack (3.1.7)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
+    rack-proxy (0.7.7)
+      rack
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -182,6 +190,13 @@ GEM
       io-console (~> 0.5)
     ruby-progressbar (1.13.0)
     securerandom (0.3.1)
+    sprockets (4.2.1)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      sprockets (>= 3.0.0)
     sqlite-ulid (0.2.1-arm64-darwin)
     sqlite-ulid (0.2.1-x86_64-linux)
     sqlite3 (2.1.1-arm64-darwin)
@@ -192,6 +207,14 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     useragent (0.16.10)
+    vite_rails (3.0.18)
+      railties (>= 5.1, < 9)
+      vite_ruby (~> 3.0, >= 3.2.2)
+    vite_ruby (3.9.0)
+      dry-cli (>= 0.7, < 2)
+      logger (~> 1.6)
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -209,14 +232,17 @@ DEPENDENCIES
   bootsnap
   debug
   faker
+  inertia_rails-contrib (~> 0.3.0)
   minitest-reporters
   puma (~> 6.0)
   pwned
   rack-cors
   rails (= 7.2.1)
+  sprockets-rails
   sqlite-ulid (~> 0.2.1)
   sqlite3
   tzinfo-data
+  vite_rails (~> 3.0)
 
 RUBY VERSION
    ruby 3.2.2p53

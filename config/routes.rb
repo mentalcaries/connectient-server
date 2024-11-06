@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  post "sign_in", to: "sessions#create"
+  get  "login", to: "sessions#new"
+  post "login", to: "sessions#create"
   post "sign_up", to: "registrations#create"
-  resources :sessions, only: [:index, :show, :destroy]
+  delete "logout", to: "sessions#destroy"
+
+  get 'dashboard', to: "dashboard#index"
+
+  # resources :sessions, only: [:index, :show, :destroy]
   resource  :password, only: [:edit, :update]
   namespace :identity do
     resource :email,              only: [:edit, :update]
@@ -15,5 +20,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "pages#index"
 end

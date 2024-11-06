@@ -5,10 +5,12 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session_record = @user.sessions.create!
+      cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
       send_email_verification
-      render json: @user, status: :created
+      redirect_to dashboard_path
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render inertia: "Auth/Login", props: { errors: { login: "Invalid credentials"}}
     end
   end
 
