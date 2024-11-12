@@ -1,14 +1,22 @@
-import { ReactNode } from "react";
-import { DashboardLayout } from "../layouts/DashboardLayout";
+import { ReactNode } from 'react';
+import { DashboardLayout } from '../layouts/DashboardLayout';
+import { Header } from '@/components/Header';
 
 type Appointment = {
   id: string;
   first_name: string;
 };
 
-const Dashboard = ({ appointments }: { appointments: Appointment[] }) => {
+const Dashboard = ({
+  appointments,
+  logged_in = false,
+}: {
+  appointments: Appointment[];
+  logged_in: boolean;
+}) => {
   return (
     <>
+      <Header isLoggedIn={logged_in} />
       <div className="p-5">
         <h1 className="font-semibold text-2xl text-blue-800">
           Connectient Admin Dashboard
@@ -21,6 +29,6 @@ const Dashboard = ({ appointments }: { appointments: Appointment[] }) => {
   );
 };
 
-Dashboard.layout = (page: ReactNode) => <DashboardLayout children={page} />
+Dashboard.layout = (page: ReactNode) => <DashboardLayout children={page} />;
 
-export default Dashboard
+export default Dashboard;

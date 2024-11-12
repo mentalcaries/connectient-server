@@ -13,9 +13,6 @@ class SessionsController < ApplicationController
     render inertia: "Login"
     
   end
-  # def show
-  #   render json: @session
-  # end
 
   def create
     if user = User.authenticate_by(email: params[:email], password: params[:password])
@@ -30,9 +27,10 @@ class SessionsController < ApplicationController
   def destroy
     Current.session.destroy
     # render inertia: "Auth/Login", props: { message: { success: "You have been logged out"} }
-  inertia_location login_path
+    inertia_location login_path
   end
 
+ 
   private
     def set_session
       @session = Current.user.sessions.find(params[:id])

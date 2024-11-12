@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token::ControllerMethods
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  include ApplicationHelper
 
   before_action :set_current_request_details
   before_action :authenticate
@@ -9,6 +10,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     if session_record = Session.find_by_id(cookies.signed[:session_token])
       Current.session = session_record
+      puts "SESSION: #{Current.session.attributes}"
     else
       redirect_to login_path
     end
