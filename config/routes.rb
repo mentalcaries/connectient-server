@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inertia-example', to: 'inertia_example#index'
   get  "login", to: "sessions#new"
   post "login", to: "sessions#create"
   post "sign_up", to: "registrations#create"
