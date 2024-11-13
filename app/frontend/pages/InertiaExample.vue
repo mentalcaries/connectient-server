@@ -19,9 +19,10 @@
     <h2 class="h2">Inertia + Vite Ruby + Vue</h2>
 
     <div class="card">
-      <button class="button" type="button" @click="count++">
+      <!-- <button class="button" type="button" @click="count++">
         count is {{ count }}
-      </button>
+      </button> -->
+      <Button class="p-5" @click="count++">Count is {{ count }}</Button>
       <p>
         Edit <code>app/frontend/pages/InertiaExample.vue</code> and save to test
         HMR
@@ -36,6 +37,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3'
 import { ref } from 'vue'
+import { Button } from '@/components/ui/button'
 
 import vueSvg from '/assets/vue.svg'
 import inertiaSvg from '/assets/inertia.svg'
