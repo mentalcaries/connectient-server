@@ -23,14 +23,16 @@ class SessionsController < ApplicationController
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
       redirect_to dashboard_path
     else
-      render inertia: "Login", props: { message: { error: "Invalid credentials"}}
+      # render inertia: "Login", props: { errors: { message: "Invalid credentials"}}
+      redirect_to sign_in_path, inertia: { errors: { message: "Invalid credentials. Please try again."} }
+
     end
   end
 
   def destroy
     Current.session.destroy
     # render inertia: "Auth/Login", props: { message: { success: "You have been logged out"} }
-  inertia_location login_path
+  inertia_location sign_in_path
   end
 
   private
