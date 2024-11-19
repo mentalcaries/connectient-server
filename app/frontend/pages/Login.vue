@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as z from 'zod';
-import { router } from '@inertiajs/vue3';
+import { router, Head } from '@inertiajs/vue3';
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -48,6 +48,7 @@ const onSubmit = form.handleSubmit((values) => {
 </script>
 
 <template>
+  <Head title="Connectient Login" />
   <div class="max-w-md mx-auto my-8">
     <h1 class="my-8 font-bold text-2xl">Login to Your Dashboard</h1>
     <form @submit="onSubmit">
