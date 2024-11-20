@@ -59,3 +59,5 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "inertia_rails-contrib", "~> 0.3.0"
 
 gem "vite_rails", "~> 3.0"
+
+gem "tailwindcss-rails", "~> 3.0"
