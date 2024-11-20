@@ -5,7 +5,6 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("User.count") do
       post sign_up_url, params: { email: "devin2@connectient.co", password: "Secret1*3*5*", password_confirmation: "Secret1*3*5*" }
     end
-
-    assert_response :created
+    assert_redirected_to sign_in_path
   end
 end

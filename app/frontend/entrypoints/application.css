@@ -31,6 +31,7 @@
     --badge-waiting-background: 48.7 93.4% 82.2%;
     --badge-cancelled-background: 205.5 93% 83.1%;
   }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -71,15 +72,15 @@
 }
 
 html {
-  font-family: var(--font-lato);
+  /* font-family: var(--font-lato); */
 }
 
 body {
-  background-size: 100px 100px;
+  /* background-size: 100px 100px;
   background-image: linear-gradient(
       to right,
       hsl(var(--body-gradient)) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, hsl(var(--body-gradient)) 1px, transparent 1px);
+    linear-gradient(to bottom, hsl(var(--body-gradient)) 1px, transparent 1px); */
 }

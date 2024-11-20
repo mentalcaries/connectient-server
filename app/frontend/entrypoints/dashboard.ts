@@ -1,26 +1,36 @@
-import { createInertiaApp } from '@inertiajs/react'
-import { createElement } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createInertiaApp } from '@inertiajs/vue3';
+import { createApp, h } from 'vue';
+import type { DefineComponent } from 'vue';
 
 createInertiaApp({
+  // Set default page title
+  // see https://inertia-rails.netlify.app/guide/title-and-meta
   //
+  // title: title => title ? `${title} - App` : 'App',
+
+  // Disable progress bar
+  //
+  // see https://inertia-rails.netlify.app/guide/progress-indicators
+  // progress: false,
 
   resolve: (name) => {
-    const pages = import.meta.glob(['../pages/*.tsx', '!./pages/**/*.{test,spec}.tsx'], { eager: true })
-    return pages[`../pages/${name}.tsx`]
+    const pages = import.meta.glob<DefineComponent>('../pages/**/*.vue', {
+      eager: true,
+    });
+    return pages[`../pages/${name}.vue`];
 
     // To use a default layout, import the Layout component
     // and use the following lines.
     // see https://inertia-rails.netlify.app/guide/pages#default-layouts
     //
-    // const page = pages[`../pages/${name}.jsx`]
-    // page.default.layout ||= (page) => createElement(Layout, null, page)
+    // const page = pages[`../pages/${name}.vue`]
+    // page.default.layout = page.default.layout || Layout
     // return page
   },
 
-  setup({ el, App, props }) {
-    const root = createRoot(el)
-
-    root.render(createElement(App, props))
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .mount(el);
   },
-})
+});

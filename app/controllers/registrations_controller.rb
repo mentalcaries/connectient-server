@@ -8,9 +8,11 @@ class RegistrationsController < ApplicationController
       session_record = @user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
       send_email_verification
-      redirect_to dashboard_path
+      redirect_to sign_in_path
+      
     else
-      render inertia: "Auth/Login", props: { errors: { login: "Invalid credentials"}}
+      render json: { error: "Bad request" }, status: :unprocessable_entity
+      
     end
   end
 

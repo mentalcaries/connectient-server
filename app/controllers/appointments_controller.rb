@@ -58,7 +58,11 @@ class AppointmentsController < ApplicationController
     
     def is_authorized_user
       is_authorized = @appointment.practice_id == @current_practice.id
-      render status: :unauthorized if !is_authorized
+      unless is_authorized
+        respond_to do |format|
+          format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
+        end
+      end
     end
 
 

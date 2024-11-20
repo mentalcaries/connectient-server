@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get  "login", to: "sessions#new"
-  post "login", to: "sessions#create"
+  get  "sign_in", to: "sessions#new"
+  post "sign_in", to: "sessions#create"
   post "sign_up", to: "registrations#create"
   delete "logout", to: "sessions#destroy"
 
   get 'dashboard', to: "dashboard#index"
 
-  # resources :sessions, only: [:index, :show, :destroy]
+  resources :sessions, only: [:index, :show, :destroy]
   resource  :password, only: [:edit, :update]
   namespace :identity do
     resource :email,              only: [:edit, :update]
