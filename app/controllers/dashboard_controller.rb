@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
 
   def index
     @appointments = Appointment.all
-    puts @appointments
     render inertia: "Dashboard", props: {
       appointments: @appointments, 
     }

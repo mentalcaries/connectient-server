@@ -31,8 +31,10 @@ class SessionsController < ApplicationController
 
   def destroy
     Current.session.destroy
+    redirect_to sign_in_path, inertia: { success: { message: "You have been logged out."} }
+
     # render inertia: "Auth/Login", props: { message: { success: "You have been logged out"} }
-  inertia_location sign_in_path
+  # inertia_location sign_in_path
   end
 
   private

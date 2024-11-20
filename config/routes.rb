@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: "dashboard#index"
 
-  # resources :sessions, only: [:index, :show, :destroy]
+  resources :sessions, only: [:index, :show, :destroy]
   resource  :password, only: [:edit, :update]
   namespace :identity do
     resource :email,              only: [:edit, :update]

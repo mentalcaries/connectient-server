@@ -50,7 +50,7 @@ const onSubmit = form.handleSubmit((values) => {
 <template>
   <Head title="Connectient Login" />
   <div class="max-w-md mx-auto my-8">
-    <h1 class="my-8 font-bold text-2xl">Login to Your Dashboard</h1>
+    <h1 class="my-8 font-bold text-2xl text-center tracking-tight ">Login to Your Dashboard</h1>
     <form @submit="onSubmit">
       <div class="grid gap-8">
         <div class="grid gap-5">
